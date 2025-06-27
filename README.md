@@ -1,6 +1,6 @@
 # Simple Todo App
 
-A stylish Todo List application built with React, TypeScript, Vite, and TailwindCSS. Iconography is provided by [Lucide.dev](https://lucide.dev/). Todos are stored in your browser's local storage for persistence.
+A Todo List application built with React, TypeScript, Vite, and TailwindCSS. Iconography is provided by [Lucide.dev](https://lucide.dev/).
 
 ## Features
 
