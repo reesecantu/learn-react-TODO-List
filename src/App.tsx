@@ -1,16 +1,22 @@
 import { useEffect, useState } from "react";
-import { dummyData } from "./data/todos";
+// import { dummyData } from "./data/todos";
 import AddTodoForm from "./components/AddTodoForm";
 import TodoList from "./components/TodoList";
 import TodoSummary from "./components/TodoSummary";
+import type { Todo } from "./types/todo";
 
 function App() {
-  const [todos, setTodos] = useState(dummyData);
+  const [todos, setTodos] = useState(() => {
+    const savedTodos: Todo[] = JSON.parse(
+      localStorage.getItem("todos") || "[]"
+    );
+    return savedTodos.length > 0 ? savedTodos : [];
+  });
 
-  // store
+  // manage local storage
   useEffect(() => {
-
-  }, [todos])
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   function setTodoCompleted(id: number, completed: boolean) {
     setTodos((prevTodos) =>
@@ -21,7 +27,7 @@ function App() {
   function addTodo(title: string) {
     setTodos((prevTodos) => [
       {
-        id: Date.now(), // normally id comes from database and is unique. 
+        id: Date.now(), // normally id comes from database and is unique.
         title,
         completed: false,
       },
